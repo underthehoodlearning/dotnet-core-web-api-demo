@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreWebApiDemo.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    [ApiController]    
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -23,6 +22,7 @@ namespace DotNetCoreWebApiDemo.Controllers
             _logger = logger;
         }
 
+        [Route("WeatherForecast")]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -36,7 +36,7 @@ namespace DotNetCoreWebApiDemo.Controllers
             .ToArray();
         }
 
-        [Route("summary")]
+        [Route("WeatherForecast/summary")]
         [HttpGet]
         public ActionResult<WeatherForecast> Get(string summary)
         {
