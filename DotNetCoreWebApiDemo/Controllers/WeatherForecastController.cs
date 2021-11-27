@@ -35,5 +35,23 @@ namespace DotNetCoreWebApiDemo.Controllers
             })
             .ToArray();
         }
+
+        [Route("summary")]
+        [HttpGet]
+        public ActionResult<WeatherForecast> Get(string summary)
+        {
+            var index = Array.FindIndex(Summaries, element => element.ToLower() == summary);
+            var rng = new Random();
+            if (index > -1)
+            {
+                return new WeatherForecast
+                {
+                    Date = DateTime.Now.AddDays(index),
+                    TemperatureC = rng.Next(-20, 55),
+                    Summary = summary
+                };
+            }
+            return NotFound();
+        }
     }
 }
